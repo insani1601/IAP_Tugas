@@ -97,25 +97,25 @@
     </div>
    </div> 
   </div>
-  <div class="col md-5">
-    <div class="row">
-      <div class="col-md-4">
-     <img src="img/profile2.png" width="200" class="rounded-circle 
-     img-thumbnail">
-     <div class="col md-8">
-        <h5>insani_vzm</h5>  
-        <p>100 Followers.</p>
-      </div> 
-    
+  <div class="col-md-5">
+  <div class="row align-items-center">
+    <div class="col-md-4">
+      <img src="img/profile2.png" width="200" class="rounded-circle img-thumbnail">
     </div>
-      <div class="row mt-3 pb-3">
+    <div class="col-md-8">
+      <h5>insani_vzm</h5>  
+      <p>100 Followers.</p>
+    </div>
+  </div>
+
+ <div class="row mt-3 pb-3">
         <div class="col">
          <div class="ig-thumbnail">
           <img src="img/thumbs/1.png">
       </div>
     </div>
   </div>
-</div>
+ </div>
 </div>
  </section>
 
