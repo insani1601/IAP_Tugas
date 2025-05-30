@@ -1,12 +1,15 @@
 <?php
-$curl = curl_init();
+function get_CURL($url) 
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($curl);
+    curl_close($curl);
+    return $result;
+}
 
-curl_setopt($curl, CURLOPT_URL, 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCBO1vtJfJQrxzdEMaSyNfSQ&key=AIzaSyDeBTJsTcQFnBi4fcN6g2bz4FRiDJCk0bM');
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-$result = curl_exec($curl);
-curl_close($curl);
-
+$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCBO1vtJfJQrxzdEMaSyNfSQ&key=AIzaSyDeBTJsTcQFnBi4fcN6g2bz4FRiDJCk0bM');
 $data = json_decode($result, true);
 
 if (!isset($data['items'][0])) {
@@ -20,7 +23,6 @@ if (!isset($data['items'][0])) {
     $thumbnail = $channel['snippet']['thumbnails']['medium']['url'];
 }
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
