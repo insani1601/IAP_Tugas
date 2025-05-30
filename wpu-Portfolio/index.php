@@ -104,7 +104,7 @@
      img-thumbnail">
      <div class="col md-8">
         <h5>insani_vzm</h5>  
-        <p>100 Subscribers.</p>
+        <p>100 Followers.</p>
       </div> 
       </div>
       </div>
