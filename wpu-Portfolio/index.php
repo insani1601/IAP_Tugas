@@ -85,11 +85,31 @@
         <img src="img/profile2.png" width="200" class="rounded-circle img-thumbnail">
       </div>
       <div class="col md-8">
-        <h5>Programming UINIB</h5>  
+        <h5>insani_vzm</h5>  
+        <p>100 Subscribers.</p>
       </div> 
     </div>
+   <div class="row mt- pb-3 ">
+    <div class="col">
+      <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/NKo7vBX9zPQ?rel=0" allowfullscreen></iframe>
+</div>
+    </div>
+   </div> 
   </div>
-  <div class="col md-5"></div>
+  <div class="col md-5">
+    <div class="row">
+      <div class="col-md-4">
+     <img src="img/profile2.png" width="200" class="rounded-circle 
+     img-thumbnail">
+     <div class="col md-8">
+        <h5>insani_vzm</h5>  
+        <p>100 Subscribers.</p>
+      </div> 
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
  </section>
