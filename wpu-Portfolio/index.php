@@ -70,17 +70,30 @@
 
 
    <!-- Youtube & IG -->
-    <section class= "Social bg-light" id= "social"> 
-      <div class="row"></div>
+    <section class="social bg-light" id="social"> 
+  <div class="container">
+    <div class="row pt-4 mb-4">
       <div class="col text-center">
         <h2>Social Media</h2>
       </div>
     </div>
+
+<div class="row justify-content-center">
+  <div class="col-md-5"> 
+    <div class="row">
+      <div class="col md-4">
+        <img src="img/profile2.png" width="200" class="rounded-circle img-thumbnail">
+      </div>
+      <div class="col md-8">
+        <h5>Programming UINIB</h5>  
+      </div> 
+    </div>
+  </div>
+  <div class="col md-5"></div>
 </div>
+</div>
+ </section>
 
-
-
-    </section>
 
     <!-- Portfolio -->
     <section class="portfolio" id="portfolio">
