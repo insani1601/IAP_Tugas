@@ -93,7 +93,7 @@
     <div class="col">
       <div class="embed-responsive embed-responsive-16by9">
       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/NKo7vBX9zPQ?rel=0" allowfullscreen></iframe>
-</div>
+      </div>
     </div>
    </div> 
   </div>
@@ -106,7 +106,12 @@
         <h5>insani_vzm</h5>  
         <p>100 Followers.</p>
       </div> 
-      </div>
+    
+    </div>
+      <div class="row mt-3 pb-3">
+        <div class="col">
+         <div class="ig-thumbnail">
+          <img src="img/thumbs/1.png">
       </div>
     </div>
   </div>
