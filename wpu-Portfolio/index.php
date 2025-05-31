@@ -180,8 +180,8 @@ if (isset($igData['data'])) {
         <ul class="list-group mb-4">
           <li class="list-group-item"><h3>Location</h3></li>
           <li class="list-group-item">My Office</li>
-          <li class="list-group-item">Jl. Setiabudhi No. 193, Bandung</li>
-          <li class="list-group-item">West Java, Indonesia</li>
+          <li class="list-group-item">Jl. Setiabudhi No. 193, Padang</li>
+          <li class="list-group-item">Sumatra Barat, Indonesia</li>
         </ul>
       </div>
       <div class="col-lg-6">
