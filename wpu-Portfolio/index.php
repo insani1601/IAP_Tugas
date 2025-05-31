@@ -1,53 +1,55 @@
 <?php
-function get_CURL($url) 
+  function get_CURL($url)
 {
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($curl);
-    curl_close($curl);
-    return $result;
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  
+  $result = curl_exec($curl);
+  curl_close($curl);
+  
+  return json_decode($result, true);
+
 }
+//API channel youtube 1
+$result= get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails,statistics&id=UCBO1vtJfJQrxzdEMaSyNfSQ&key=AIzaSyDeBTJsTcQFnBi4fcN6g2bz4FRiDJCk0bM');
 
-// --- YouTube API ---
-$youtubeAPI = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCBO1vtJfJQrxzdEMaSyNfSQ&key=AIzaSyDeBTJsTcQFnBi4fcN6g2bz4FRiDJCk0bM';
-$youtubeResult = get_CURL($youtubeAPI);
-$youtubeData = json_decode($youtubeResult, true);
 
-if (!isset($youtubeData['items'][0])) {
-    $title = "Channel Not Found";
-    $subscribers = 0;
-    $thumbnail = "img/profile2.png";
-} else {
-    $channel = $youtubeData['items'][0];
-    $title = $channel['snippet']['title'];
-    $subscribers = $channel['statistics']['subscriberCount'];
-    $thumbnail = $channel['snippet']['thumbnails']['medium']['url'];
-}
+$youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
+$channelName = $result['items'][0]['snippet']['title'];
+$subscriber = $result['items'][0]['statistics']['subscriberCount'];
 
-// --- Instagram API ---
+//video terakhir ini menggunakan (order date)
+$urlLatestvideo = ('https://www.googleapis.com/youtube/v3/search?key=AIzaSyDeBTJsTcQFnBi4fcN6g2bz4FRiDJCk0bM&channelId=UCBO1vtJfJQrxzdEMaSyNfSQ&maxResults=1&order=date&part=snippet');
+$result = get_CURL($urlLatestvideo);
+$latestVideoId = $result['items'][0]['id']['videoId'];
+
+
+
+// Instagram API
+// $clientId = 'f0b022fbe68c4ae79dd51169af18feb4';
 $accessToken = 'IGAAI55Aw32ZABBZAE12ajNxWVNYbWJvSElKNTFfX25tZAjVKTVkzMG8wRl9WVGhpZAk1HOHV5cHpJajhkb2UwUWY1NkxWTGlQSjhjUlZA3NlZAzR3NrYXdydEZAjb2duekxaWktPWkdfM2JrTFNaWmxXVHdCb3M4OFM2cGY0RXpDX24tTQZDZD';
-$instagramAPI = "https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,timestamp&access_token=$accessToken";
-$igResult = get_CURL($instagramAPI);
-$igData = json_decode($igResult, true);
 
-$igPhotos = [];
-if (isset($igData['data'])) {
-    foreach ($igData['data'] as $media) {
-        if ($media['media_type'] == 'IMAGE') {
-            $igPhotos[] = $media['media_url'];
-        }
-    }
+$result = get_CURL('https://graph.instagram.com/v22.0/me?fields=username,profile_picture_url,followers_count&access_token=IGAAI55Aw32ZABBZAE12ajNxWVNYbWJvSElKNTFfX25tZAjVKTVkzMG8wRl9WVGhpZAk1HOHV5cHpJajhkb2UwUWY1NkxWTGlQSjhjUlZA3NlZAzR3NrYXdydEZAjb2duekxaWktPWkdfM2JrTFNaWmxXVHdCb3M4OFM2cGY0RXpDX24tTQZDZD');
+$usernameIG = $result['username'];
+$profilePictureIG = $result['profile_picture_url'];
+$followersIG = $result['followers_count'];
+
+$result = get_CURL('https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,timestamp&access_token=IGAAI55Aw32ZABBZAE12ajNxWVNYbWJvSElKNTFfX25tZAjVKTVkzMG8wRl9WVGhpZAk1HOHV5cHpJajhkb2UwUWY1NkxWTGlQSjhjUlZA3NlZAzR3NrYXdydEZAjb2duekxaWktPWkdfM2JrTFNaWmxXVHdCb3M4OFM2cGY0RXpDX24tTQZDZD&limit=5');
+$photos = [];
+foreach ($result['data'] as $photo) {
+    $photos[] = $photo['media_url'];
 }
 ?>
+
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <title>My Portfolio</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>My Portfolio</title>
 </head>
 <body>
 
@@ -69,7 +71,7 @@ if (isset($igData['data'])) {
 
 <div class="jumbotron" id="home">
   <div class="container text-center">
-    <img src="img/profile1.png" class="rounded-circle img-thumbnail">
+    <img src="img/foto Profile.png" class="rounded-circle img-thumbnail">
     <h1 class="display-4">Insani Verzama</h1>
     <h3 class="lead">student | informanation sytem | sains</h3>
   </div>
@@ -103,11 +105,11 @@ if (isset($igData['data'])) {
       <div class="col-md-5"> 
         <div class="row">
           <div class="col-md-4">
-            <img src="<?= $thumbnail ?>" width="200" class="rounded-circle img-thumbnail">
+            <img src="<?= $youtubeProfilePic ?>" width="200" class="rounded-circle img-thumbnail">
           </div>
           <div class="col-md-8">
-            <h5><?= $title ?></h5>  
-            <p><?= number_format($subscribers) ?> Subscribers.</p>
+            <h5><?= $channelName  ?></h5>  
+            <p><?= $subscriber ?> Subscribers.</p>
             <div class="g-ytsubscribe" data-channelid="UCBO1vtJfJQrxzdEMaSyNfSQ" data-layout="default" data-count="default"></div>
           </div> 
         </div>
@@ -120,27 +122,26 @@ if (isset($igData['data'])) {
         </div> 
       </div>
 
-      <div class="col-md-5">
-        <div class="row align-items-center">
-          <div class="col-md-4">
-            <img src="img/profile2.png" width="200" class="rounded-circle img-thumbnail">
+     <div class="col-md-5 mb-4">
+        <div class="row mb-3">
+          <div class="col-md-4 text-center">
+            <img src="<?= $profilePictureIG; ?>" width="100" class="rounded-circle img-thumbnail" alt="Instagram Profile Picture">
           </div>
-          <div class="col-md-8">
-            <h5>insani_vzm</h5>  
-            <p>Instagram Feed</p>
+          <div class="col-md-8 d-flex flex-column justify-content-center">
+            <h5><?= $usernameIG; ?></h5>
+            <p><?= $followersIG; ?> Followers</p>
           </div>
         </div>
         <div class="row mt-3 pb-3">
-          <?php foreach(array_slice($igPhotos, 0, 3) as $photo): ?>
-          <div class="col-4">
-            <div class="ig-thumbnail mb-2">
-              <img src="<?= $photo ?>" class="img-fluid img-thumbnail">
-            </div>
+          <div class="col d-flex flex-wrap gap-2">
+            <?php foreach ($photos as $photo) : ?>
+              <div class="ig-thumbnail">
+                <img src="<?= $photo; ?>" class="img-fluid" alt="Instagram Photo">
+              </div>
+            <?php endforeach; ?>
           </div>
-          <?php endforeach; ?>
         </div>
-      </div>
-    </div>
+      </div>
   </div>
 </section>
 
